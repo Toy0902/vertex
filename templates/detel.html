@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+{% load hitcount_tags %}
+
+{% block title %} {{ matn.title }} {% endblock title %}
+
+{% block content %}
+
+    <h2>{{ matn.title }}</h2>
+    <h5>{{ matn.published_time }} | Ko'rilganlar soni 1 {{ matn.view_count }} </h5>
+
+    <img src="{{ news.image.url }}">
+    <p>{{ matn.body }}</p>
+
+    {% if request.user.is_authenticated and request.user.is_superuser%}
+
+    {% endif %}
+{% endblock content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{{detel.nomi}}<br>
+<img src="{{detel.rasm.url}}" width="50px" alt="Intro image"><br>
+{{detel.text}}<br>
+{{detel.chopetilish_vaqti}}<br>
+{% for comment in comments %}
+<div class="comments">
+    <p class="font_weight-bold">{{ comment.user }}
+        <span class="text-muted">{{ comment.created_time }}</span>
+    </p>
+    <p>{{ comment.body }}</p>
+</div>
+{% endfor %}
+
+{% if user.is_authenticated %}
+<div class="card">
+    <div class="card-body">
+        <h3>izoh qoldirish</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="sumbit" class="btn btn-lg btn-primary">Yuborish</button>
+        </form>
+    </div>
+</div>
+{% else %}
+<div class="card">
+    <div class="card-body">
+        <p class="text-danger">Faqatgina  ro'yhatdan o'tsangiz izoh yozishingiz mumkin</p>
+        <h3>Buning uchun <a href="{% url 'sign_up' %}">ro'yhatdan o'ting</a> yoki <a href="{% url 'login' %}">kirish</a> </h3>
+    </div>
+</div>
+{% endif %}
+</body>
+</html>

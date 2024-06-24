@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        .container {
+            border: 2px solid rgb(196, 192, 192);
+            width: 70%;
+            padding: 20px;
+
+        }
+        .edit-rasm {
+            border-radius: 40%;
+            width: 400px;
+            height: 350px;
+        }
+        .itemmm {
+            margin: 30px;
+
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1>Username: {{user.username}}</h1>
+        <p>Username: {{user.email}}</p>
+        {%if  profile_info.photo %}
+        <img src="{{profile_info.photo.url}}" alt="" class="edit-rasm">
+        {% endif %}
+        <div class="itemmm">
+            <p>ismingiz:{{user.first_name}}</p>
+            <p>Familyasi :{{user.last_name}}</p>
+            <p>{{profile_info.date_of_birth }}</p>
+        </div>
+        <p></p>
+        <a href="{% url 'profile_edit' %}"> Malumotlarni o'zgartirish.</a><br>
+        <a href="{% url 'password_change' %}">Parolni o'gartirish</a>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</html>
+
+{% endblock content %}

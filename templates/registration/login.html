@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Login page sahifasi bu</h1>
+
+<p>Iltimos shiu formani to'ldiring </p>
+<form method="post">{% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Login</button>
+</form>
+
+                <p class="pp"><a href="{% url 'password_reset' %}">Parolni unitdingizmi</a></p>
+                <p class="pp"><a href="{% url 'sign_up' %}">Royhatdan o'tish</a></p>
+
+{% endblock content %}
